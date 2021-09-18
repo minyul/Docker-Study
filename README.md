@@ -102,19 +102,43 @@ VM 과 Docker 차이! Hypervisor Guest OS가 Overhead 부분이다 !
 이 어디 서버에있는지 찾아주는 '서비스 디스커버리' 기능도 있다.
 
 
+# 도커 실무
 
+설치
+curl -s https://get.docker.com/ | sudo sh : 명령어를 입력하고 패스워드를 입력하면 리눅스 배포판에 따라 자동으로 최신버전의
+도커를 설치
+sudo usermod -aG docker ubuntu : ubuntu 유저 권한 추가 
+유저 모드를 변경해서 그룹을 설정
+![image](https://user-images.githubusercontent.com/86240112/133890584-f7667083-fd05-49c7-afde-9ce7c6a31be6.png)
 
+프로세스 상태를 보는 용도 : ps aux
+ps aux | grep docekr 
 
+https://velog.io/@weekbelt/%EB%8F%84%EC%BB%A4%EB%8D%B0%EB%AA%ACDocker-Daemon
 
+도커는 도커 클라이언트, 도커 데몬(host) 클라이언트 서버 구조로 되어있따.
 
+docker run ubuntu:20.04
+자 - 여기서 run 명령어를 사용하면 사용할 이미지가 저장되어 있는지 확인하고 없다면 다운로드(pull) 한 후 컨테이너를
+생성(create) 하고 시작(start) 합니다. 
 
+컨테이너는 정상적으로 실행됐지만 뭘 하라고 명령어를 전달하지 않았기 때문에 컨테이너는 생성되자마자 종료됩니다.
+컨테이너는 프로세스이기 때문에 실행중인 프로세스가 없으면 컨테이너는 종료됩니다.
 
+docker run --rm -it ubuntu:20.04 /bin/sh 우분투 이미지 컨테이너를 실행하고 그 우분투의 쉘 접속 
 
+![image](https://user-images.githubusercontent.com/86240112/133894441-e7f65f1d-7a85-4f11-8520-62b15a82371c.png)
+![image](https://user-images.githubusercontent.com/86240112/133894450-7b3cb151-230e-4baa-94d6-af078e73e0ef.png)
 
+docker run --rm -p 5678:5678 hashicorp/http-echo -test="hello world"
+나의 5678 포트에서 hashicorp/http-echo 컨테이너의 5678 포트
 
+curl localhost:5678
 
+exec 명령어 : run 명령어와 달리 실행중인 도커 컨테이너에 접속할 때 사용하며 컨테이너 안에 ssh server등을 설치하지 않고
+exec 명령어로 접속한다.
 
-
+![image](https://user-images.githubusercontent.com/86240112/133894957-7607e8cc-8f54-4f7e-8732-45fe0355a6d9.png)
 
 
 
