@@ -285,6 +285,104 @@ docker hub
 간단간단!! 이러한 관계 즉, 프로토콜을 설정해놧움
 
 
+# 도커 컴포즈 강의 시작 !!!!
+
+Dockerfile -> build -> Image -> run -> Container 
+
+이미지를 Run 할때, 설정을 추가하다. 포트를 추가한다거나 불륨을 마운트( 외부 저장장치를 OS에 넣는다 or 기존 데이터를 유지)하거나
+자주 자주 설정이 필요로 하는데 너무 길어지니까 Image 와 config 를 하나의 파일로 만들어보자!
+
+![image](https://user-images.githubusercontent.com/86240112/133927507-a3fe1095-4ba4-4700-90a5-95ced6fed278.png)
+
+
+한 것이 docker-compose.yml 이다!
+
+근데 이게 하나의 Image와 Config가 아닌
+여러개의 Image, Config 가 관리가 가능하다
+
+# 도커 컴포즈 설치와 데모
+
+sudo curl -L "https://github.com/docker/compose ~~ "
+sudo chmod +x /use/local/bin/docker-compose   : 파일에 실행할수 있는 권한을 준다 ( +x : executable )
+
+명령어가 길때
+
+/ .bashrc 파일 가장 아랫부분에 다음 내용을 추가
+alias dco='docker-compose'
+source ~/.bashrc
+dco
+
+docker run -it nginx 
+이렇게 되면 컨테이너에 접속할 방법이없다. 그래서 포트를 꼭 연결해줘야한다
+docekr run -it -p 8080:80 nginx 
+
+![image](https://user-images.githubusercontent.com/86240112/133927351-b153c0ac-4d54-4b95-a844-d70385f7ade0.png)
+
+docker ps -a 
+이렇게 하면 찌꺼기가 남아있을 수 있음
+
+docekr run -it -p 8080:80 -rm nginx :  여기서 -rm 을 하면 찌꺼끼가 남아있지않은 채로 실행!
+
+index.html 을 만들고 이 파일을 nginx 컨테이너에 불륨 마운트를 한다.
+docker run -it -p 8080:80 --rm -v $(pwd):/usr/share/nginx/html/ nginx
+
+여기서 $(pwd) 현재위치, :/usr/share/nginx/html <- 컨테이너 안에서의 경로 nginx가 기본으로 바라보고있는!
+
+# 도커 컨테이너끼리 연결하기가 불편하기에 도커 컴포즈를 쓴다.
+
+
+https://www.daleseo.com/docker-run/
+
+
+# 명령어들이 매번 쓰기 귀찮고 까다롭다! dockerc-compose.yml 에 쓰자!
+
+https://gmldbd94.tistory.com/135
+
+docker-compose up -d
+docker-compose down 
+
+
+![image](https://user-images.githubusercontent.com/86240112/133929122-de0592c2-e717-43e6-96c5-416f380d819a.png)
+
+# YAML 문법
+
+확장자는 .yml
+키와 값은 : 기호로
+블록 내에선 두칸 더들여쓰기
+목록은 -기호로
+주선은 #기호로
+
+예를들면말이쥐
+
+martin:
+  name:Martin D'vloper
+ 
+마틴이라는 오븍젝트안에 name이라는 키 그다음은 값!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
