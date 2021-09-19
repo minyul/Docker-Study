@@ -141,6 +141,83 @@ exec 명령어로 접속한다.
 ![image](https://user-images.githubusercontent.com/86240112/133894957-7607e8cc-8f54-4f7e-8732-45fe0355a6d9.png)
 
 
+# 도커 기본 명령어 - ps, stop, rm, logs, images 
+
+프로세스 
+docker ps : 쭉 나오는데 IMAGE 에 mysql, redis 등등 나옴. 
+docker ps -a : 중지된 것도 전부 나온다.
+
+docker stop 컨테이너 이름 or ID
+docker stop 00dc5634634c0a 
+
+docker rm : 중지된 컨테이너가 삭제가 안될수있다. 즉 찌꺼기가 있음 그래서 삭제를 해줘야함
+docekr rm 00dc5634634c0a
+
+띄어쓰기로 여러개 가능  docekr rm 00dc5634634c0a 00dc5634141a0e
+
+Mysql 에 대한 로그를 알아볼까?
+docekr logs 00dc5634634c0a
+하면 mysql에 대한 로그들이 쭉 나옴!!
+
+docker logs -f 00dc5634634c0a : 이렇게 -f 옵션을 주면 실시간으로 대기하면서 로그가 나오면 나오게한다.
+
+docker images : 있는 이미지를 쫙 나오게한다. PC에 저장되어있는 이미지들이다. 만약 없으면 pull로 다운로드가 된다!
+run할때 자동으로 없으면!! pull 이 실행됨
+
+docekr rmi 이미지명 : 컨테이너가 아닌 이미지를 삭제할떄 !
+
+# 도커 기본 명령어 - volume : 데이터가 유실되지않도록
+
+docker ps
+docekr stop mysql
+docker rm mysql 
+docekr run -d -p 3306:3306
+
+이렇게 중지하고 지우고 다시 run 할때 기존에 있었떤 데이터는 어떻게 될까?
+
+조금 전에 만들었던 데이터는 다 없어진 것! 컨테이너가 종료될때 사라진것 
+그럼 -v(volume) 옵션을 주면 데이터가 없어지지않음!
+
+
+# 도커 컴포즈 (docker compose)
+
+명령어들이 굉장히 조심스럽고 띄어쓰기나 글자나 하나하나 것들을 제대로 입력안하면 안되기에
+도커 컴포즈가 있는 것. ( 프로그램 : 도커컴포즈 )
+
+![image](https://user-images.githubusercontent.com/86240112/133914935-b7e2e1d1-d563-4623-a276-6d50c7e00610.png)
+
+
+docker-compose up : 실행
+docker-compose down  : 중지
+
+쉘스크립트로 직접 설정했던 것을 docker-compose.yml에 저장해서 실행하면 됨.
+docker-compose.yml 에 있는 곳에 docker-compose up 하면 yml 을 읽어서 컨테이너를 읽음!
+
+restart : 만약 컨테이너가 죽게되면 항상 도커가 자동으로 !
+einvironment : 환경변수 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
