@@ -359,6 +359,71 @@ martin:
  
 마틴이라는 오븍젝트안에 name이라는 키 그다음은 값!
 
+# 도커 컴포즈 사용법
+
+version : docker-compose.yml 파일의 명세 버전
+이 버전에 따라 지원하는 도커 엔진 버전도 다름
+
+Services : 실행할 컨테이너의 정의 docker run --name django 와 같다고 보면된다
+
+image : 컨테이너에 사용할 이미지 이름과 태그 이미지가 없으면 자동으로 pull
+
+build : 이미지를 자체 빌드후 사용
+image 속성 대신 사용함
+여기는 dockerfile 정의를 해야하는 경우가 많음.
+ports : 포트옵션
+environment : 컨테이너 내부에 사용할 환경변수 
+volumnes : 특징 디렉토리를 마운트할 목적 {호스트디렉토리} : {컨테이너 디렉토리}
+
+link : 다른 컨테이너와 연결 - 요즘 잘사용하지않음!
+depoends_on : 컨테이너 의존성 추가
+
+# 명령어
+
+docker-compose pull : 필요한 이미지를 다운받는다 ( 뒤에 옵션으로 서비스를 써야한다)
+
+cat docker-compose.yml 안에 nginx가 있고!
+docker-compose pull 하면 nginx가 pull 됨
+
+docker-compose up [service]
+옵선 --build : 강제로 다시 빌드
+옵션 --force-recreate : 컨테이너를 새로 생성
+옵션 -d : 데몬 모드로 실행
+
+docker-compose exec : 해당 서비스의 컨테이너에서 명령어를 실행
+docker-comose exec nginx bash : 하면 해당 컨테이너에 내부모습이 나타남
+
+docker-compose run : 해당 서비스에 컨테이너를 하나 더 실행시키는거임
+
+docker-compose down service = stop + kill
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
