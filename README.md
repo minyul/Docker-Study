@@ -197,6 +197,78 @@ restart : 만약 컨테이너가 죽게되면 항상 도커가 자동으로 !
 einvironment : 환경변수 
 
 
+# 도커 이미지 만들기
+
+이미지란 : 프로세스가 실행되는 파일들의 집합(환경) 
+이미지가 합쳐져서 또 다른 이미지를 만들수 있음.
+
+Base Image : 우분투, Mysql  - 원본테이터를 수정할순없지만 데이터를 추가 삭제를 할 수 있다.
+
+docker images : 많은 이미지가 나온다
+
+docker run -it --name git ubuntu:lastest bash : 도커 실행을 할거고 이름은 git으로할거고 image는 ubuntu고 bash를 곧바로 실행
+이제 우분투 컨테이너에 들어간거고!
+
+git을 쳐서 git이 있는지확인하고
+없으면 apt 을쳐서 git을 설치!
+
+docker commit git ubuntu:git : git이라는 컨테이너를 ubuntu:git 이라고 바꾼것
+docker run -it --name git2 ubuntu:git bash
+
+여기서 만약 git 을 쳐보면!?
+git이 포함되어있기에 git 이 있는 컨테이너다!!!!
+
+새로운 상태를 이미지로 저장한다는 뜻이야. 뭔말인지 알쥐!?
+
+docker images 
+하고 나서 한줄씩 딱 나오는데
+
+/ 기준으로 왼쪽은 아이디!
+
+만들어보자!!
+
+IDE 에 Dockerfile 만들고!
+
+FROM ubuntu:latest
+RUN apt-get update
+RUN apt-get install -y git
+
+docker build -t ubuntu:git-dockerfile .
+
+이렇게 도커파일로 관리를 하게 되면 최초에 어떻게 설치가 되었는지 기록으로 확인을 할수 있따는 장점이 있다.
+
+정리!!!!
+그러니까 예를들어보자.
+
+우리는 컨테이너를 실행하고 거기에 실행을 해서 git을 깔아!
+그리고 그걸 commit 으로 이름을 바꾸고 이제 실행하면 그 이미지는 git이 깔려있는!
+이미지인거야. 
+
+그럼 이건.. 컨테이너에 접속해서 (sh) 그 누군가가 git을 깔았다는 그 히스토리는 자기만알잖아.
+
+그렇기에 docker file을 미리 만들어 놓고 그 도커파일을 이용해서 build ! 를하면 
+dockerfile에 히스토리도 알기때문에 좋다 이거지!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
