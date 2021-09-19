@@ -250,12 +250,39 @@ docker build -t ubuntu:git-dockerfile .
 dockerfile에 히스토리도 알기때문에 좋다 이거지!!
 
 
+# 도커이미지만들기 - 웹애플리케이션
+
+mkdir web
+npm init - 초기화
+npm ifastify --save
+
+app.js 에 코드 복사 
+node app.js 해서 서버를 실행
+
+이제 이 디렉토리에다가 
+dockerfile 을 만들자
 
 
+![image](https://user-images.githubusercontent.com/86240112/133917459-4c8813f1-49ec-416a-a6fb-6c33e32cb196.png)
+![image](https://user-images.githubusercontent.com/86240112/133917462-d6fa7f18-948e-46d0-98b9-50397392a2e1.png)
+![image](https://user-images.githubusercontent.com/86240112/133917468-c44765cd-aed8-4018-96ac-87e57c452774.png)
+![image](https://user-images.githubusercontent.com/86240112/133917472-1ca0fb39-f13e-4f4f-8781-d2f5071f8852.png)
+![image](https://user-images.githubusercontent.com/86240112/133917474-3201b9aa-9ce4-417d-9940-5ee3daef0bdd.png)
 
+도커 이미지를 만들 때, 캐시를 쓴다. 즉슨 한번 만들어본 이미지는 캐시가 먹어서 빠르다.
 
+# 도커 허브 ( 이미지 저장소 )
 
+이미지저장명령어
 
+docker login
+docker push {ID}/example : 내가만든 이미지를 저장소에 저장!
+docker pull  : 갖고오는거
+
+docker hub 
+
+나의 PC에서 만들어진 이미지를 도커허브에 저장하고 거기에 push 와 pull을 이용하서 공유를하는거쥐
+간단간단!! 이러한 관계 즉, 프로토콜을 설정해놧움
 
 
 
