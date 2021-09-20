@@ -398,6 +398,22 @@ docker-compose run : 해당 서비스에 컨테이너를 하나 더 실행시키
 docker-compose down service = stop + kill
 
 
+도커 컴포즈 환경변수를 선언할 수 있는 위치
+
+1.DockerFile의 ENV
+2.docker-compose.yml 의 environment
+3.docker-compose [run/exec] -e {key}:{value}
+
+dockerfile 과 docker-compose.yml 에 같은 변수에 할당한다면 !? 적용순서는?
+docker-compose.yml 이 최종적으로 적용된다.
+
+docker-compose run -e Test=run ngnix bash 이때는 run 이 나온다. 즉, 명령어로 한 것이 가장 최종적으로 적용된다.
+
+
+
+
+
+
 
 
 
